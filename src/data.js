@@ -1,5 +1,5 @@
 export const projects = [
-  {
+{
 title: "KIET HRMS",
 desc: "Used by KIET faculties and staff to manage organizational activities. Includes modules for payroll, leave requests, employee records, and performance monitoring, streamlining HR workflows.",
 tech: ["Django", "MySQL", "Celery",],
@@ -14,7 +14,7 @@ img: "/images/studentPortal.png",
 live: "https://tech.kiet.edu/StudentPortal/",
 },
   
-  {
+{
 title: "NotifyKIET",
 desc: "Web app to create email templates and send bulk emails efficiently, serving as a notification portal for KIET Group of Institutions streamlining communication across the organization.",
 tech: ["Django REST Framework", "MySQL", "Celery", "Redis","Docker"],
@@ -23,13 +23,13 @@ live: "https://tech.kiet.edu/notify-kiet/",
 },
 
 {
-    title: "Manthan Quiz Platform",
-    desc: "The official quiz registration and management platform for Manthan 3.0, enabling participants to register, take quiz, and track results seamlessly.",
-    tech: ["Django REST Framework", "Postgre","Docker"],
-    img: "/images/manthan.png",
-    live: "https://manthan.kiet.edu/",
+title: "Manthan Quiz Platform",
+desc: "The official quiz registration and management platform for Manthan 3.0, enabling participants to register, take quiz, and track results seamlessly.",
+tech: ["Django REST Framework", "Postgre","Docker"],
+img: "/images/manthan.png",
+live: "https://manthan.kiet.edu/",
     // github: "https://github.com/example"
-  },
+},
 {
 title: "Hospital Management System",
 desc: "A complete hospital workflow system with authentication, analytics, and role-based access, enabling smooth management of patients and staff.",
@@ -61,7 +61,7 @@ github: "https://github.com/nandinisingh27/sw_server"},
 title: "NeuraSecure",
 desc: "Built a Cyber Attack News Scraper that automatically gathers the latest cybersecurity incidents from trusted sources and notifies users via email. Integrated a blog-style interface where users can like, share, and comment on updates for better engagement.",
 tech: ["Django","Selenium","MySQL"],
-img: "https://source.unsplash.com/800x600/?certificate,design",
+img: "/images/NeuraSecure.png",
 github: "https://github.com/nandinisingh27/NeuraSecure",},
 {
 title: "WhatsApp Scrappy",
