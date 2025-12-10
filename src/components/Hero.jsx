@@ -117,27 +117,29 @@ const Hero = () => {
         </motion.p>
 
         {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="flex items-center justify-center gap-4 mt-8 flex-wrap"
-        >
-          <a
-            href="#projects"
-            className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
-          >
-            View Projects <ArrowRight size={18} />
-          </a>
+       <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1, duration: 0.8 }}
+  className="flex items-center justify-center gap-4 mt-8 flex-wrap"
+>
+  <a
+    href="#projects"
+    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
+  >
+    View Projects <ArrowRight size={18} />
+  </a>
 
-          <a
-            href="/images/latest_resume.pdf"
-            download
-            className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
-          >
-            Download Resume
-          </a>
-        </motion.div>
+  {/* Updated Resume Button */}
+  <a
+    href="https://drive.google.com/file/d/1Xx4vVesJisv0BX9_tMvOZTstXOrSENR9/view?usp=sharing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
+  >
+    View Resume  <ArrowRight size={18} />
+  </a>
+</motion.div>
 
         {/* Social Icons Only */}
         <motion.div

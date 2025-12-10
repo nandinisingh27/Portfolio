@@ -75,7 +75,7 @@ export default function Experience() {
             <p className="text-sm text-gray-400 mb-4">June 2024 – Present</p>
 
             <ul className="text-gray-300 space-y-2">
-              <li>• Designed and developed core ERP modules using Django and Django REST Framework.</li>
+              <li>• Maintained and enhanced core ERP modules by fixing issues, optimizing workflows, and building supporting utilities using Django and Django REST Framework.</li>
               <li>• Integrated secure REST APIs with dashboards for real‑time workflow automation.</li>
               <li>• Improved system speed through optimized SQL queries and caching strategies.</li>
               <li>• Built  <span className="text-purple-400">NotifyKIET</span>, a bulk email automation system for institute-wide communication.</li>

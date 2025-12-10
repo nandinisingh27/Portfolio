@@ -108,11 +108,8 @@ const About = () => {
               />
 
               <h3 className="text-2xl font-semibold mb-3">Who Am I </h3>
-
               <p className="text-gray-300 leading-relaxed">
-                I'm Nandini Singh, an enthusiastic <span className="text-purple-400">Backend Developer </span>specializing in{" "}
-                <span className="text-purple-400">Django & Python</span>, currently pursuing B.Tech in CS. My passion is building responsive, scalable, and clean web applications using modern backend logic.
-                While my core expertise is in the backend, I possess fundamental frontend knowledge, ensuring the applications I deliver featuring <span className="text-purple-400">user-friendly UI</span>.
+                I'm Nandini Singh, an enthusiastic<span className="text-purple-400"> Backend Developer</span> specializing in <span className="text-purple-400">Django and Python</span>, currently pursuing a B.Tech in Computer Science. I’m passionate about building responsive, scalable, and clean web applications with modern backend architecture. While my core expertise lies in backend development, I also possess foundational <span className="text-purple-400">frontend</span>  skills, ensuring that the applications I build deliver a smooth and user-friendly experience.
               </p>
             </div>
 
@@ -135,7 +132,7 @@ const About = () => {
               </div>
               
               <p className="text-gray-300 leading-relaxed"> 
-                I build and maintain full-stack web applications. My technology stack centers on the backend, utilizing <span className="text-purple-400">Django, DRF, MySQL and PostgreSQL.</span> I complete the stack with<span className="text-purple-400"> React</span>, and I am dedicated to continuously improving <span className="text-purple-400">application performance, optimizing workflows, and enhancing the UI experience </span>to solve practical problems effectively.
+                I build and maintain full-stack web applications. My technology stack is centered around the backend, using <span className="text-purple-400">Django, DRF, MySQL, and PostgreSQL</span>. I complete the stack with <span className="text-purple-400">React</span>, and I am dedicated to continuously improving application performance, <span className="text-purple-400">optimizing workflows, and enhancing the user interface</span> to solve practical problems effectively.
               </p>
             </div>
 
@@ -193,18 +190,7 @@ className="p-3 rounded-xl bg-[#0a0a0a] border border-purple-600/30 hover:border-
     />
   </a>
 
-  {/* GitHub (Official)
-  <a
-    href="https://github.com/your_id"
-    target="_blank"
-    className="p-3 rounded-xl bg-[#0a0a0a] border border-purple-600/30 hover:border-purple-500 hover:scale-110 transition-all duration-300"
-  >
-    <img
-      src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"
-      alt="GitHub"
-      className="w-10 h-10 invert"
-    />
-  </a> */}
+ 
 </div>
 
 
