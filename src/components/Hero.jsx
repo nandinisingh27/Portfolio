@@ -132,7 +132,7 @@ const Hero = () => {
 
   {/* Updated Resume Button */}
   <a
-    href="https://drive.google.com/file/d/1Xx4vVesJisv0BX9_tMvOZTstXOrSENR9/view?usp=sharing"
+    href="https://drive.google.com/file/d/1HK33SzFGzhabxanA1R_gvLiaEZfKzB9-/view?usp=sharing"
     target="_blank"
     rel="noopener noreferrer"
     className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
