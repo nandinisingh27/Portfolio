@@ -16,14 +16,15 @@ const Hero = () => {
 
   return (
     <section
-      id="home"
-      className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden bg-[#050505]"
-    >
+  id="home"
+  className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden"
+>
+
       {/* FLICKER-FREE Spotlight */}
       {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(500px_at_var(--mx)_var(--my),rgba(140,60,255,0.12),transparent_70%)] transition-none" /> */}
 
       {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" /> */}
 
       {/* Floating blobs */}
       <motion.div

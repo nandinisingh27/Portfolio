@@ -37,10 +37,49 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-24 px-6 bg-[#050505] text-white overflow-hidden"
+     className="relative py-20 px-6 text-white overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20"></div>
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20"></div> */}
+      <motion.div
+        animate={{ x: [0, 80, 0], y: [0, -40, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-96 h-96 bg-purple-700/20 blur-[130px] rounded-full top-10 left-20"
+      />
+      <motion.div
+        animate={{ x: [0, -100, 0], y: [0, 60, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-[450px] h-[450px] bg-pink-600/20 blur-[150px] rounded-full bottom-20 right-10"
+      />
 
+      {/* Animated shining circle behind heading */}
+      <motion.div
+        animate={{ opacity: [0.1, 0.2, 0.1], scale: [1, 1.1, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute w-[600px] h-[600px] bg-purple-400/10 blur-[200px] rounded-full"
+      />
+
+      {/* Falling diagonal particles */}
+      {[...Array(16)].map((_, i) => (
+        <motion.span
+          key={`about-particle-${i}`} // Use unique key for the About section
+          className="absolute w-1 h-1 bg-purple-300/70 rounded-full"
+          initial={{
+            x: Math.random() * 1920, // Using max screen width assumption for initial random position
+            y: Math.random() * 1080, // Using max screen height assumption
+            opacity: 0,
+          }}
+          animate={{
+            x: "+=200",
+            y: "+=350",
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 5 + Math.random() * 4,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
       <div className="max-w-5xl mx-auto relative z-20">
         <motion.h2
           initial={{ opacity: 0, y: -15 }}
@@ -80,24 +119,6 @@ I love building clean, meaningful digital experiences.
 If you have an opportunity, idea, or project — I’d be happy to connect.
 
   </p>
-
-  {/* Availability */}
-  {/* <div className="mb-6">
-    <p className="text-sm text-gray-400">Status</p>
-    <p className="text-green-400 font-medium">Available for work</p>
-  </div> */}
-
-  {/* Location */}
-  {/* <div className="flex items-center gap-4 mb-6">
-    <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-      🇮🇳
-    </div>
-    <div>
-      <p className="text-sm text-gray-400">Location</p>
-      <p className="font-medium text-white">Ghaziabad, India</p>
-    </div>
-  </div> */}
-
   {/* Email */}
   <div className="flex items-center gap-4 mb-8">
     <Mail size={28} className="text-purple-400" />

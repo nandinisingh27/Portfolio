@@ -15,7 +15,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="font-sans antialiased">
+    // <div className="font-sans antialiased">
+    <div className="relative font-sans antialiased bg-[#050505] overflow-hidden">
+
       <Navbar />
       <main>
         <Hero />
@@ -27,7 +29,6 @@ export default function App() {
       </main>
       <Footer />
 
-      {/* Tailwind keyframes for small animations */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0) }

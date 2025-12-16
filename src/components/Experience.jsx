@@ -5,11 +5,12 @@ import { Briefcase } from "lucide-react";
 export default function Experience() {
   return (
     <section 
-      id="experience" 
-      className="relative py-20 px-6 bg-[#050505] text-white overflow-hidden"
-    >
+  id="experience" 
+  className="relative py-20 px-6 text-white overflow-hidden"
+>
+
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" /> */}
 
       {/* Glowing blobs */}
       <motion.div

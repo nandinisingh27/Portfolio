@@ -5,18 +5,11 @@ import { Code, Sparkles } from "lucide-react";
 const About = () => {
   return (
     <section
-      id="about"
-      className="relative min-h-screen bg-[#050505] text-white py-20 px-5 flex justify-center items-center overflow-hidden"
-    >
-      {/* ------------------------------------
-        ANIMATED BACKGROUND ELEMENTS (Copied from Hero.jsx)
-        ------------------------------------
-      */}
+  id="about"
+  className="relative min-h-screen text-white py-20 px-5 flex justify-center items-center overflow-hidden"
+>
 
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" />
-
-      {/* Slow drifting blobs */}
+   
       <motion.div
         animate={{ x: [0, 80, 0], y: [0, -40, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}

@@ -55,13 +55,54 @@ const skills = [
 export default function Skills() {
   return (
     <section
-      id="skills"
-      className="relative py-24 px-6 bg-[#050505] text-white overflow-hidden"
-    >
+  id="skills"
+  className="relative py-20 px-6 text-white overflow-hidden"
+>
+
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20"></div>
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20"></div> */}
 
       {/* Heading */}
+       <motion.div
+        animate={{ x: [0, 80, 0], y: [0, -40, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-96 h-96 bg-purple-700/20 blur-[130px] rounded-full top-10 left-20"
+      />
+      <motion.div
+        animate={{ x: [0, -100, 0], y: [0, 60, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-[450px] h-[450px] bg-pink-600/20 blur-[150px] rounded-full bottom-20 right-10"
+      />
+
+      {/* Animated shining circle behind heading */}
+      <motion.div
+        animate={{ opacity: [0.1, 0.2, 0.1], scale: [1, 1.1, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="absolute w-[600px] h-[600px] bg-purple-400/10 blur-[200px] rounded-full"
+      />
+
+      {/* Falling diagonal particles */}
+      {[...Array(16)].map((_, i) => (
+        <motion.span
+          key={`about-particle-${i}`} // Use unique key for the About section
+          className="absolute w-1 h-1 bg-purple-300/70 rounded-full"
+          initial={{
+            x: Math.random() * 1920, // Using max screen width assumption for initial random position
+            y: Math.random() * 1080, // Using max screen height assumption
+            opacity: 0,
+          }}
+          animate={{
+            x: "+=200",
+            y: "+=350",
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 5 + Math.random() * 4,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
       <div className="max-w-6xl mx-auto text-center relative z-20 mb-14">
         <motion.h2
           initial={{ opacity: 0, y: -15 }}
