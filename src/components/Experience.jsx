@@ -79,6 +79,7 @@ export default function Experience() {
               <li>• Maintained and enhanced core ERP modules by fixing issues, optimizing workflows, and building supporting utilities using Django and Django REST Framework.</li>
               <li>• Integrated secure REST APIs with dashboards for real‑time workflow automation.</li>
               <li>• Improved system speed through optimized SQL queries and caching strategies.</li>
+              <li>• Built <span className="text-purple-400">KIET-ePay</span>, a dynamic event management and payment platform enabling seamless event registrations with secure INR and USD payments via Easebuzz.</li>
               <li>• Built  <span className="text-purple-400">NotifyKIET</span>, a bulk email automation system for institute-wide communication.</li>
               <li>• Collaborated with teams on modules like Academics, Registrar, Hostel, HR, Payroll, Accounts, and Marks Monitoring.</li>
             </ul>
