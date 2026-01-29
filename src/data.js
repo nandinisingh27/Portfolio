@@ -21,11 +21,25 @@ tech: ["Django REST Framework", "MySQL", "Celery", "Redis","Docker"],
 img: "/images/notify.png",
 live: "https://tech.kiet.edu/notify-kiet/",
 },
+{
+  title: "KIET E-Pay Event Management System",
+  desc: "An event management platform where admins can create events and configure registration forms. Users can register and complete secure payments via Easebuzz, supporting both INR and USD-paying customers through international card acceptance.",
+  tech: [
+    "Django REST Framework",
+    "Easebuzz",
+    "PostgreSQL",
+    "Webhook Handling",
+    "Docker",
+  ],
+  img: "/images/epay.png",
+  live: "https://tech.kiet.edu/kiet-epay/"
+}
+,
 
 {
 title: "Manthan Quiz Platform",
 desc: "The official quiz registration and management platform for Manthan 3.0, enabling participants to register, take quizzes, and track results seamlessly.",
-tech: ["Django REST Framework", "Postgre","Docker","Celery","Redis"],
+tech: ["Django REST Framework", "PostgreSQL","Docker","Celery","Redis"],
 img: "/images/manthan.png",
 live: "https://manthan.kiet.edu/",
     // github: "https://github.com/example"
@@ -33,7 +47,7 @@ live: "https://manthan.kiet.edu/",
 {
 title: "Hospital Management System",
 desc: "A complete hospital workflow system with authentication, analytics, and role-based access, enabling smooth management of patients and staff.",
-tech: ["Django", "MySQL", "Email Integration"],
+tech: ["Django", "MySQL", "Email Integration","SMTP"],
 img: "/images/hms.jpeg",
 live: "https://www.suhanisingh.me/#!/landing",
 github: "https://github.com/nandinisingh27/VitalCure-hospital-management-system-"},
