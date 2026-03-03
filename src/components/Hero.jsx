@@ -21,13 +21,6 @@ const Hero = () => {
   className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden"
 >
 
-      {/* FLICKER-FREE Spotlight */}
-      {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(500px_at_var(--mx)_var(--my),rgba(140,60,255,0.12),transparent_70%)] transition-none" /> */}
-
-      {/* Animated background */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-purple-900/20 animate-gradient" /> */}
-
-      {/* Floating blobs */}
       <motion.div
         animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
         transition={{ duration: 10, repeat: Infinity }}
@@ -134,7 +127,7 @@ const Hero = () => {
 
   {/* Updated Resume Button */}
   <a
-    href="https://drive.google.com/file/d/1HK33SzFGzhabxanA1R_gvLiaEZfKzB9-/view?usp=sharing"
+    href="https://drive.google.com/file/d/1VloswbvyFCpLeePV8z7PH1GZ8BfIpyBV/view?usp=sharing"
     target="_blank"
     rel="noopener noreferrer"
     className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-xl flex items-center gap-2 font-medium"
