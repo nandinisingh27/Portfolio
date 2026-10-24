@@ -1,171 +1,124 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { sectionMeta, developerOrder } from '../data/portfolio';
+import { useSmoothScroll } from '../hooks/smoothScroll';
+import { SeriesMark } from './Poster';
+import { EASE } from './fx';
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  const [solid, setSolid] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [mobileNav, setMobileNav] = useState(false);
+  const [active, setActive] = useState('top');
+  const { scrollTo } = useSmoothScroll();
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setSolid(y > 40);
+    setHidden(y > 400 && y > prev && !mobileNav);
+  });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const ids = ['top', ...developerOrder];
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
   }, []);
 
+  const go = (id) => {
+    setMobileNav(false);
+    scrollTo(`#${id}`, { offset: id === 'top' ? 0 : -64 });
+  };
+
   return (
-    <header
-      className={`fixed w-full z-50 transition-all ${
-        scrolled
-          ? "bg-black/70 backdrop-blur-md border-b border-purple-900/30 shadow-lg shadow-purple-900/10"
-          : "bg-transparent"
-      }`}
+    <motion.header
+      className="fixed inset-x-0 top-0 z-[60]"
+      animate={{ y: hidden ? '-100%' : '0%' }}
+      transition={{ duration: 0.45, ease: EASE }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="text-xl font-bold flex items-center gap-2 text-white">
-          <span className="text-purple-400">&lt;</span>
-          <span>Nandini Singh</span>
-          <span className="text-purple-400">/&gt;</span>
+      <div
+        className={`gutter flex h-16 items-center justify-between gap-6 transition-[background,backdrop-filter] duration-500 md:h-[72px] ${
+          solid || mobileNav ? 'bg-ink/80 backdrop-blur-xl' : 'bg-gradient-to-b from-black/80 to-transparent'
+        }`}
+      >
+        <div className="flex items-center gap-8 lg:gap-10">
+          <button type="button" onClick={() => go('top')} className="text-[22px]" aria-label="Back to top">
+            <SeriesMark />
+          </button>
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Sections">
+            <NavLink label="Home" active={active === 'top'} onClick={() => go('top')} />
+            {developerOrder.map((id) => (
+              <NavLink key={id} label={sectionMeta[id].nav} active={active === id} onClick={() => go(id)} />
+            ))}
+          </nav>
         </div>
 
-        <nav className="hidden md:flex gap-8 items-center text-white">
-          <a href="#about" className="hover:text-purple-400 transition">
-            About
-          </a>
-          <a href="#experience" className="hover:text-purple-400 transition">
-            Experience
-          </a>
-          <a href="#projects" className="hover:text-purple-400 transition">
-            Projects
-          </a>
-          <a href="#skills" className="hover:text-purple-400 transition">
-            Skills
-          </a>
-          <a href="#contact" className="hover:text-purple-400 transition">
-            Contact
-          </a>
-        </nav>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => go('contact')}
+            className="rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-[0.14em] text-bone transition hover:border-crimson-2 hover:bg-crimson/20 hover:text-white"
+          >
+            LET&apos;S BUILD
+          </button>
 
-        <button
-          className="md:hidden text-white"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <button
+            type="button"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+            aria-label={mobileNav ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileNav}
+            onClick={() => setMobileNav((v) => !v)}
+          >
+            <motion.span className="block h-0.5 w-5 bg-bone" animate={{ rotate: mobileNav ? 45 : 0, y: mobileNav ? 4 : 0 }} />
+            <motion.span className="block h-0.5 w-5 bg-bone" animate={{ rotate: mobileNav ? -45 : 0, y: mobileNav ? -4 : 0 }} />
+          </button>
+        </div>
       </div>
 
-      {open && (
-        <div className="md:hidden bg-black/95 border-t border-gray-800 text-white">
-          <div className="px-6 py-6 flex flex-col gap-4">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
-      )}
-    </header>
+      <AnimatePresence>
+        {mobileNav && (
+          <motion.nav
+            aria-label="Sections"
+            className="gutter border-b border-white/5 bg-ink/95 pb-6 pt-2 backdrop-blur-xl lg:hidden"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.45, ease: EASE }}
+          >
+            {[{ id: 'top', label: 'Home' }, ...developerOrder.map((id) => ({ id, label: sectionMeta[id].nav })), { id: 'contact', label: "Let's Build" }].map((l, i) => (
+              <motion.button
+                key={l.id}
+                type="button"
+                onClick={() => go(l.id)}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 * i }}
+                className={`block w-full py-3 text-left font-display text-3xl tracking-wide ${active === l.id ? 'text-crimson-2' : 'text-bone'}`}
+              >
+                {l.label}
+              </motion.button>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
-// import React, { useState, useEffect } from "react";
-// import { Menu, X } from "lucide-react";
 
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => setScrolled(window.scrollY > 20);
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   return (
-//     <header
-//       className={`fixed w-full z-50 transition-all duration-300 ${
-//         scrolled
-//           ? "backdrop-blur-md border-b shadow-sm"
-//           : "bg-transparent"
-//       }`}
-//       style={{
-//         background: scrolled ? "var(--navbar-bg)" : "transparent",
-//         color: "var(--text)",
-//         borderColor: scrolled ? "var(--card-border)" : "transparent",
-//       }}
-//     >
-//       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-//         {/* Logo */}
-//         <div className="text-xl font-bold flex items-center gap-2">
-//           <span style={{ color: "var(--accent)" }}>&lt;</span>
-//           <span style={{ color: "var(--text)" }}>Nandini Singh</span>
-//           <span style={{ color: "var(--accent)" }}>/&gt;</span>
-//         </div>
-
-//         {/* Desktop Nav */}
-//         <nav className="hidden md:flex gap-8 items-center">
-//           {["about", "experience", "projects", "skills", "contact"].map(
-//             (item) => (
-//               <a
-//                 key={item}
-//                 href={`#${item}`}
-//                 className="transition"
-//                 style={{
-//                   color: "var(--text)",
-//                 }}
-//                 onMouseEnter={(e) =>
-//                   (e.target.style.color = "var(--accent)")
-//                 }
-//                 onMouseLeave={(e) =>
-//                   (e.target.style.color = "var(--text)")
-//                 }
-//               >
-//                 {item.charAt(0).toUpperCase() + item.slice(1)}
-//               </a>
-//             )
-//           )}
-//         </nav>
-
-//         {/* Mobile Toggle */}
-//         <button
-//           className="md:hidden transition"
-//           style={{ color: "var(--text)" }}
-//           onClick={() => setOpen((v) => !v)}
-//         >
-//           {open ? <X size={22} /> : <Menu size={22} />}
-//         </button>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {open && (
-//         <div
-//           className="md:hidden border-t transition-all"
-//           style={{
-//             background: "var(--navbar-mobile)",
-//             borderColor: "var(--card-border)",
-//             color: "var(--text)",
-//           }}
-//         >
-//           <div className="px-6 py-6 flex flex-col gap-4">
-//             {["about", "experience", "projects", "skills", "contact"].map(
-//               (item) => (
-//                 <a
-//                   key={item}
-//                   href={`#${item}`}
-//                   className="transition"
-//                   style={{ color: "var(--text)" }}
-//                   onMouseEnter={(e) =>
-//                     (e.target.style.color = "var(--accent)")
-//                   }
-//                   onMouseLeave={(e) =>
-//                     (e.target.style.color = "var(--text)")
-//                   }
-//                 >
-//                   {item.charAt(0).toUpperCase() + item.slice(1)}
-//                 </a>
-//               )
-//             )}
-//           </div>
-//         </div>
-//       )}
-//     </header>
-//   );
-// }
+function NavLink({ label, active, onClick }) {
+  return (
+    <button type="button" onClick={onClick} className={`relative text-[13px] font-medium transition ${active ? 'text-bone' : 'text-mist hover:text-bone'}`}>
+      {label}
+      {active && <motion.span layoutId="nav-underline" className="absolute -bottom-1.5 left-0 right-0 h-[2px] rounded bg-crimson" />}
+    </button>
+  );
+}

@@ -1,197 +1,140 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Code, Sparkles } from "lucide-react";
+import { motion } from 'framer-motion';
+import { education, experience, profile } from '../data/portfolio';
+import { EASE, SectionHeading, Tilt } from './fx';
 
-const About = () => {
+export default function About() {
+  const facts = [
+    { k: 'Current Role', v: `${experience[0].role}, ${experience[0].company}`, s: experience[0].period },
+    { k: 'Education', v: education[0].degree, s: `${education[0].school} · ${education[0].period}` },
+    { k: 'Primary Stack', v: 'Django & Python', s: 'with DRF, PostgreSQL, Redis & Celery' },
+    { k: 'Projects', v: "Worked on 10+ Projects", s: 'From E-Commerce to complex SaaS platforms' },
+  ];
+
   return (
-    <section
-  id="about"
-  className="relative min-h-screen text-white py-20 px-5 flex justify-center items-center overflow-hidden"
->
-
-   
-      <motion.div
-        animate={{ x: [0, 80, 0], y: [0, -40, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-96 h-96 bg-purple-700/20 blur-[130px] rounded-full top-10 left-20"
-      />
-      <motion.div
-        animate={{ x: [0, -100, 0], y: [0, 60, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-[450px] h-[450px] bg-pink-600/20 blur-[150px] rounded-full bottom-20 right-10"
-      />
-
-      {/* Animated shining circle behind heading */}
-      <motion.div
-        animate={{ opacity: [0.1, 0.2, 0.1], scale: [1, 1.1, 1] }}
-        transition={{ duration: 6, repeat: Infinity }}
-        className="absolute w-[600px] h-[600px] bg-purple-400/10 blur-[200px] rounded-full"
-      />
-
-      {/* Falling diagonal particles */}
-      {[...Array(16)].map((_, i) => (
-        <motion.span
-          key={`about-particle-${i}`} // Use unique key for the About section
-          className="absolute w-1 h-1 bg-purple-300/70 rounded-full"
-          initial={{
-            x: Math.random() * 1920, // Using max screen width assumption for initial random position
-            y: Math.random() * 1080, // Using max screen height assumption
-            opacity: 0,
-          }}
-          animate={{
-            x: "+=200",
-            y: "+=350",
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 5 + Math.random() * 4,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-      
-      {/* Rotating Ring */}
-      {/* <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute w-80 h-80 border border-purple-500/20 rounded-full"
-      > */}
-        {/* Orbiting Dot */}
-        {/* <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          className="w-4 h-4 bg-purple-400 rounded-full absolute -top-2 left-1/2"
-        />
-      </motion.div> */}
-      
-      {/* ------------------------------------
-        END ANIMATED BACKGROUND ELEMENTS
-        ------------------------------------
-      */}
-      
-      {/* Content */}
-      <div className="relative z-20 max-w-5xl w-full"> {/* Added z-20 to ensure content is above particles */}
-        
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-14"
-        >
-          <span className="text-purple-400">About</span> Me
-        </motion.h2>
-
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 gap-12 items-stretch">
-
-         {/* LEFT CARD - PHOTO (Baseline) */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative group h-full"
-          >
-            <div className="bg-[#0a0a0a] border border-purple-600/40 rounded-3xl p-8 shadow-xl backdrop-blur-lg h-full flex flex-col items-center text-center transition transform group-hover:scale-105 duration-500">
-
-              <img
-                src="/images/nandini.jpeg"
-                alt="Nandini"
-                className="w-28 h-28 object-cover rounded-full border-2 border-purple-500 shadow-lg mb-6"
-              />
-
-              <h3 className="text-2xl font-semibold mb-3">Who Am I </h3>
-              <p className="text-gray-300 leading-relaxed">
-                I'm Nandini Singh, an enthusiastic<span className="text-purple-400"> Backend Developer</span> specializing in <span className="text-purple-400">Django and Python</span>, currently pursuing a B.Tech in Computer Science. I’m passionate about building responsive, scalable, and clean web applications with modern backend architecture. While my core expertise lies in backend development, I also possess foundational <span className="text-purple-400">frontend</span>  skills, ensuring that the applications I build deliver a smooth and user-friendly experience.
-              </p>
-            </div>
-
-            <div className="absolute inset-0 blur-3xl bg-purple-600/20 -z-10 opacity-0 group-hover:opacity-100 transition duration-700"></div>
-          </motion.div>
-
-          {/* RIGHT CARD (Corrected Heading Position) */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative group h-full"
-          >
-            <div className="bg-[#0a0a0a] border border-purple-600/40 rounded-3xl p-8 shadow-xl backdrop-blur-lg h-full flex flex-col items-center text-center transition transform group-hover:scale-105 duration-500">
-
-              <Code className="text-purple-400 w-14 h-14 mt-8" />
-
-              <div className="h-24 mb-6 flex flex-col justify-end">
-                <h3 className="text-2xl font-semibold mb-3">What I Do</h3> 
-              </div>
-              
-              <p className="text-gray-300 leading-relaxed"> 
-                I build and maintain full-stack web applications. My technology stack is centered around the backend, using <span className="text-purple-400">Django, DRF, MySQL, and PostgreSQL</span>. I complete the stack with <span className="text-purple-400">React</span>, and I am dedicated to continuously improving application performance, <span className="text-purple-400">optimizing workflows, and enhancing the user interface</span> to solve practical problems effectively.
-              </p>
-            </div>
-
-            <div className="absolute inset-0 blur-3xl bg-purple-600/20 -z-10 opacity-0 group-hover:opacity-100 transition duration-700"></div>
-          </motion.div>
-
-        </div>
-
-        {/* BADGES */}
+    <>
+      <SectionHeading kicker="Backend Developer" title="About Me" />
+      <div className="gutter grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
         <motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.7 }}
-  className="flex flex-wrap justify-center gap-8 mt-16"
->
-{/* REAL CODING PROFILE ICONS */}
-{/* REAL CODING PROFILE ICONS */}
-<div className="flex justify-center gap-6 mt-12">
+          className="mx-auto w-full max-w-md lg:max-w-none"
+          initial={{ opacity: 0, scale: 0.88, filter: 'blur(12px)' }}
+          whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-10% 0px' }}
+          transition={{ duration: 1.2, ease: EASE }}
+        >
+          <Tilt max={5} className="rounded-2xl">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-white/10">
+              <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_30%,#5a0b1b,#14060a_60%,#07070a)]" />
+              <div className="absolute inset-0 opacity-50 [background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.03)_0px,rgba(255,255,255,0.03)_1px,transparent_1px,transparent_28px)]" />
+              <img
+                src={profile.portrait.src}
+                srcSet={profile.portrait.srcSet}
+                sizes="(max-width: 1024px) 90vw, 40vw"
+                alt={profile.portrait.alt}
+                loading="lazy"
+                className="absolute bottom-0 left-1/2 h-[92%] w-auto max-w-none -translate-x-1/2 object-contain object-bottom"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/90 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                <div>
+                  <p className="text-[10px] font-bold tracking-[0.3em] text-crimson-2">Developer</p>
+                  <p className="font-display text-3xl leading-none text-bone">{profile.displayName}</p>
+                </div>
+              </div>
+            </div>
+          </Tilt>
+        </motion.div>
 
-  {/* LeetCode (Official) */}
-  <a
-    href="https://leetcode.com/u/nandinisingh27/"
-    target="_blank"
-    className="p-3 rounded-xl bg-[#0a0a0a] border border-purple-600/30 hover:border-purple-500 hover:scale-110 transition-all duration-300"
-  >
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
-      alt="LeetCode"
-      className="w-10 h-10 object-contain"
-    />
-  </a>
+        <div>
+          <motion.p
+            className="font-serif text-[clamp(1.5rem,3vw,2.4rem)] italic leading-[1.2] text-bone"
+            initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: EASE }}
+          >
+            “{profile.intro}”
+          </motion.p>
+          <p className="mt-4 text-sm font-semibold tracking-wide text-mist">— {profile.fullName} · {profile.role}</p>
 
-<a
-href="https://www.codechef.com/users/nandinisingh27"
-target="_blank"
-rel="noopener noreferrer"
-className="p-3 rounded-xl bg-[#0a0a0a] border border-purple-600/30 hover:border-purple-500 hover:scale-110 transition-all duration-300"
->
-<img
-  src="https://cdn.brandfetch.io/idM2-b7Taf/theme/light/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1759119333623"
-  alt="CodeChef"
-  className="w-16 h-12 object-contain"
-/>
-</a>
-  {/* GeeksForGeeks (Official) */}
-  <a
-    href="https://www.geeksforgeeks.org/profile/nandinisibdvr"
-    target="_blank"
-    className="p-3 rounded-xl bg-[#0a0a0a] border border-purple-600/30 hover:border-purple-500 hover:scale-110 transition-all duration-300"
-  >
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg"
-      alt="GFG"
-      className="w-10 h-10 object-contain"
-    />
-  </a>
+          <motion.dl
+            className="mt-8 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.08 }}
+          >
+            {facts.map((f) => (
+              <motion.div
+                key={f.k}
+                className="bg-ink-2 p-5"
+                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
+              >
+                <dt className="text-[10px] font-bold uppercase tracking-[0.28em] text-smoke">{f.k}</dt>
+                <dd className="mt-2 text-base font-semibold text-bone">{f.v}</dd>
+                <dd className="mt-0.5 text-xs text-mist">{f.s}</dd>
+              </motion.div>
+            ))}
+          </motion.dl>
 
- 
-</div>
+          {/* Coding Profile Badges */}
+          <div className="mt-8">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-smoke">Coding Profiles & Problem Solving</p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={profile.links.leetcode}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="link"
+                className="glass group flex items-center gap-2.5 rounded-xl px-4 py-2 text-xs font-semibold text-bone transition hover:border-crimson-2 hover:bg-white/10"
+              >
+                <span className="font-display text-sm tracking-wide text-[#FFA116]">LC</span>
+                LeetCode Profile ↗
+              </a>
+              <a
+                href={profile.links.codechef}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="link"
+                className="glass group flex items-center gap-2.5 rounded-xl px-4 py-2 text-xs font-semibold text-bone transition hover:border-crimson-2 hover:bg-white/10"
+              >
+                <span className="font-display text-sm tracking-wide text-[#5B4638]">CC</span>
+                CodeChef Profile ↗
+              </a>
+              <a
+                href={profile.links.gfg}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="link"
+                className="glass group flex items-center gap-2.5 rounded-xl px-4 py-2 text-xs font-semibold text-bone transition hover:border-crimson-2 hover:bg-white/10"
+              >
+                <span className="font-display text-sm tracking-wide text-[#2F8D46]">GFG</span>
+                GeeksforGeeks ↗
+              </a>
+              <a
+                href={profile.links.github}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="link"
+                className="glass group flex items-center gap-2.5 rounded-xl px-4 py-2 text-xs font-semibold text-bone transition hover:border-crimson-2 hover:bg-white/10"
+              >
+                <span className="font-display text-sm tracking-wide text-white">GH</span>
+                GitHub Repos ↗
+              </a>
+            </div>
+          </div>
 
-
-
-</motion.div>
+          {/* <div className="mt-8">
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-smoke">Core Focus & Interests</p>
+            <div className="flex flex-wrap gap-2">
+              {profile.interests.map((i) => (
+                <span key={i} className="glass rounded-full px-3 py-1.5 text-xs font-medium text-bone">
+                  {i}
+                </span>
+              ))}
+            </div>
+          </div> */}
+        </div>
       </div>
-    </section>
+    </>
   );
-};
-
-export default About;
+}
